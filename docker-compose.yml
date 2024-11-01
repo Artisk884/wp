@@ -1,0 +1,39 @@
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: "mysql57"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: complexstring
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+
+  wordpress:
+    image: wordpress:latest
+    container_name: "wordpress"
+    volumes:
+      - ./wordpress/html:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    depends_on:
+      - mysql
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: "phpmyadmin"
+    depends_on:
+      - mysql
+    ports:
+      - 8888:80
+    environment:
+      PMA_HOSTS: mysql
+      #PMA_USER: user
+      #PMA_PASSWORD: password
