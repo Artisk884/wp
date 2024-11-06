@@ -19,7 +19,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - 8080:80
+      - 3000:80
     environment:
       WORDPRESS_DB_HOST: mysql:3306
       WORDPRESS_DB_NAME: wordpress
@@ -32,7 +32,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - 8888:80
+      - 3001:80
     environment:
       PMA_HOSTS: mysql
       #PMA_USER: user
