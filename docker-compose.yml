@@ -1,7 +1,7 @@
 services:
   mysql:
     image: mysql:latest
-    container_name: "mysql"
+    container_name: "mysql_"
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
@@ -12,7 +12,7 @@ services:
 
   wordpress:
     image: wordpress:latest
-    container_name: "wordpress"
+    container_name: "wordpress_"
     volumes:
       - ./wordpress/html:/var/www/html
       - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
@@ -28,7 +28,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: "phpmyadmin"
+    container_name: "phpmyadmin_"
     depends_on:
       - mysql
     ports:
